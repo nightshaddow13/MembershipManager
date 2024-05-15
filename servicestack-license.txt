@@ -1,0 +1,11 @@
+# LICENSE CERTIFICATE LC-4174757-FO11569-240515
+Reference: LC-4174757-FO11569-240515
+Type: Free Open Source License
+Date of Issue: May 15, 2024
+Expiry: December 31, 2024
+
+# LICENSEE
+Name: Xavier Goss
+
+# LICENSE KEY
+OSS MIT 2024 https://github.com/nightshaddow13/MembershipManager SCU25boEtMwEH3H3MlLUPM69GuMzlTa+/oO4tEAQxG7p8dmosZ+sJTDOMUH1+0LiZbB/CE7Us7p2c9QMZUsS8WL/KsCmv4a8H//Cz7OswPuUsn/l2vcuAHeOPSS0Z99sY3R2HZ/zOp+6G6pdhg/Oh+WghrAXVKXJqUoyAl9WJGI=
