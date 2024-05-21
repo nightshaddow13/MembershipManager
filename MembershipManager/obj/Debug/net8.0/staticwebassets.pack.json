@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\js\\dtos.mjs",
+      "PackagePath": "staticwebassets\\js\\dtos.mjs"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.MembershipManager.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.MembershipManager.props",
+      "PackagePath": "build\\MembershipManager.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.MembershipManager.props",
+      "PackagePath": "buildMultiTargeting\\MembershipManager.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.MembershipManager.props",
+      "PackagePath": "buildTransitive\\MembershipManager.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
