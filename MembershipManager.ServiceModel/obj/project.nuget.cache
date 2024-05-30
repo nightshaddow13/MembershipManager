@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "2t+cGI+QOMqGQP9xfwVF5CKZ6FTYAmZvjhjhU/fLr6buwBEP4jiLteS54iO0uZwC/0wS09bJtOVATpvj+ctNvg==",
+  "success": true,
+  "projectFilePath": "C:\\VS_2022\\MembershipManager\\MembershipManager.ServiceModel\\MembershipManager.ServiceModel.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\xgoss\\.nuget\\packages\\servicestack.interfaces\\8.2.2\\servicestack.interfaces.8.2.2.nupkg.sha512"
+  ],
+  "logs": []
+}

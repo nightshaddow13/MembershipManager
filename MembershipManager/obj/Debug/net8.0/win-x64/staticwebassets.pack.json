@@ -1,0 +1,121 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\obj\\Debug\\net8.0\\win-x64\\scopedcss\\projectbundle\\MembershipManager.bundle.scp.css",
+      "PackagePath": "staticwebassets\\MembershipManager.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\css\\highlight.css",
+      "PackagePath": "staticwebassets\\css\\highlight.css"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\css\\typography.css",
+      "PackagePath": "staticwebassets\\css\\typography.css"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\img\\blazor.svg",
+      "PackagePath": "staticwebassets\\img\\blazor.svg"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\img\\nav\\bookings.svg",
+      "PackagePath": "staticwebassets\\img\\nav\\bookings.svg"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\img\\nav\\counter.svg",
+      "PackagePath": "staticwebassets\\img\\nav\\counter.svg"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\img\\nav\\coupon.svg",
+      "PackagePath": "staticwebassets\\img\\nav\\coupon.svg"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\img\\nav\\home.svg",
+      "PackagePath": "staticwebassets\\img\\nav\\home.svg"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\img\\nav\\profile.svg",
+      "PackagePath": "staticwebassets\\img\\nav\\profile.svg"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\img\\nav\\todomvc.svg",
+      "PackagePath": "staticwebassets\\img\\nav\\todomvc.svg"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\img\\nav\\weather.svg",
+      "PackagePath": "staticwebassets\\img\\nav\\weather.svg"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\img\\profiles\\user1.svg",
+      "PackagePath": "staticwebassets\\img\\profiles\\user1.svg"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\img\\profiles\\user2.svg",
+      "PackagePath": "staticwebassets\\img\\profiles\\user2.svg"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\img\\profiles\\user3.svg",
+      "PackagePath": "staticwebassets\\img\\profiles\\user3.svg"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\lib\\js\\highlight.js",
+      "PackagePath": "staticwebassets\\lib\\js\\highlight.js"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\lib\\js\\qrcode.min.js",
+      "PackagePath": "staticwebassets\\lib\\js\\qrcode.min.js"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\lib\\mjs\\servicestack-client.min.mjs",
+      "PackagePath": "staticwebassets\\lib\\mjs\\servicestack-client.min.mjs"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\lib\\mjs\\servicestack-client.mjs",
+      "PackagePath": "staticwebassets\\lib\\mjs\\servicestack-client.mjs"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\mjs\\app.mjs",
+      "PackagePath": "staticwebassets\\mjs\\app.mjs"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\pages\\Account\\Manage\\EnableAuthenticator.mjs",
+      "PackagePath": "staticwebassets\\pages\\Account\\Manage\\EnableAuthenticator.mjs"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\tailwind\\README.txt",
+      "PackagePath": "staticwebassets\\tailwind\\README.txt"
+    },
+    {
+      "Id": "C:\\VS_2022\\MembershipManager\\MembershipManager\\wwwroot\\tailwind\\ServiceStack.Blazor.html",
+      "PackagePath": "staticwebassets\\tailwind\\ServiceStack.Blazor.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\win-x64\\staticwebassets\\msbuild.MembershipManager.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\win-x64\\staticwebassets\\msbuild.build.MembershipManager.props",
+      "PackagePath": "build\\MembershipManager.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\win-x64\\staticwebassets\\msbuild.buildMultiTargeting.MembershipManager.props",
+      "PackagePath": "buildMultiTargeting\\MembershipManager.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\win-x64\\staticwebassets\\msbuild.buildTransitive.MembershipManager.props",
+      "PackagePath": "buildTransitive\\MembershipManager.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
