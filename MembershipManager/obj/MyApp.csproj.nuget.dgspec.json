@@ -1,0 +1,162 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\VS_2022\\MembershipManager\\MembershipManager\\MyApp.csproj": {}
+  },
+  "projects": {
+    "C:\\VS_2022\\MembershipManager\\MembershipManager\\MyApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\VS_2022\\MembershipManager\\MembershipManager\\MyApp.csproj",
+        "projectName": "MyApp",
+        "projectPath": "C:\\VS_2022\\MembershipManager\\MembershipManager\\MyApp.csproj",
+        "packagesPath": "C:\\Users\\xgoss\\.nuget\\packages\\",
+        "outputPath": "C:\\VS_2022\\MembershipManager\\MembershipManager\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\xgoss\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\VS_2022\\CampMaster.API.Helper\\CampMaster.API.Helper\\bin\\Debug": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\VS_2022\\MembershipManager\\MyApp.Client\\MyApp.Client.csproj": {
+                "projectPath": "C:\\VS_2022\\MembershipManager\\MyApp.Client\\MyApp.Client.csproj"
+              },
+              "C:\\VS_2022\\MembershipManager\\MyApp.ServiceInterface\\MyApp.ServiceInterface.csproj": {
+                "projectPath": "C:\\VS_2022\\MembershipManager\\MyApp.ServiceInterface\\MyApp.ServiceInterface.csproj"
+              },
+              "C:\\VS_2022\\MembershipManager\\MyApp.ServiceModel\\MyApp.ServiceModel.csproj": {
+                "projectPath": "C:\\VS_2022\\MembershipManager\\MyApp.ServiceModel\\MyApp.ServiceModel.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Markdig": {
+              "target": "Package",
+              "version": "[0.34.*, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.Server": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "ServiceStack": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "ServiceStack.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "ServiceStack.Blazor": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "ServiceStack.Extensions": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "ServiceStack.Mvc": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "ServiceStack.OrmLite.SqlServer.Data": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "ServiceStack.OrmLite.Sqlite.Data": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "ServiceStack.Server": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.*, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
+        }
+      }
+    }
+  }
+}
