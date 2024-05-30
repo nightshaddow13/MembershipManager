@@ -5,10 +5,17 @@ namespace MembershipManager;
 public class ConfigureAutoQuery : IHostingStartup
 {
     public void Configure(IWebHostBuilder builder) => builder
-        .ConfigureServices(services => {
-            services.AddPlugin(new AutoQueryFeature {
+        .ConfigureServices(services =>
+        {
+            services.AddPlugin(new AutoQueryDataFeature
+            {
                 MaxLimit = 1000,
-                IncludeTotal = true,
+                //IncludeTotal = true,
+            });
+            services.AddPlugin(new AutoQueryFeature
+            {
+                MaxLimit = 1000,
+                //IncludeTotal = true,
             });
         });
 }

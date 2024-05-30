@@ -1,4 +1,6 @@
-[assembly: HostingStartup(typeof(ConfigureOpenApi))]
+using MembershipManager.Data;
+
+[assembly: HostingStartup(typeof(MembershipManager.ConfigureOpenApi))]
 
 namespace MembershipManager;
 
@@ -12,7 +14,7 @@ public class ConfigureOpenApi : IHostingStartup
                 services.AddSwaggerGen();
 
                 services.AddServiceStackSwagger();
-                //services.AddBasicAuth<Data.ApplicationUser>();
+                services.AddBasicAuth<ApplicationUser>();
                 //services.AddJwtAuth();
             
                 services.AddTransient<IStartupFilter,StartupFilter>();

@@ -1,4 +1,4 @@
-[assembly: HostingStartup(typeof(ConfigureCors))]
+[assembly: HostingStartup(typeof(MembershipManager.ConfigureCors))]
 
 namespace MembershipManager;
 
