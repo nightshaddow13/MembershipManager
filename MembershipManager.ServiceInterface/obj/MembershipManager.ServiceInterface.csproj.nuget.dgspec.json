@@ -55,7 +55,19 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
             "ServiceStack": {
+              "target": "Package",
+              "version": "[8.*, )"
+            },
+            "ServiceStack.Ormlite": {
               "target": "Package",
               "version": "[8.*, )"
             }

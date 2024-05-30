@@ -35,8 +35,9 @@ public enum Sex
 #region Interactions
 
 [AutoApply(Behavior.AuditQuery)]
-public class QueryBookings : QueryDb<Unit> { }
+public class QueryUnit : QueryDb<Unit> { }
 
+[ValidateHasRole("Admin")]
 [ValidateHasRole("MembershipChair")]
 [ValidateHasRole("CouncilExecutive")]
 [ValidateHasRole("CommitteeMember")]
@@ -53,6 +54,7 @@ public class CreateUnit : ICreateDb<Unit>, IReturn<IdResponse>
     public int Number { get; set; }
 }
 
+[ValidateHasRole("Admin")]
 [ValidateHasRole("MembershipChair")]
 [ValidateHasRole("CouncilExecutive")]
 [ValidateHasRole("CommitteeMember")]
@@ -72,6 +74,7 @@ public class UpdateUnit : IPatchDb<Unit>, IReturn<IdResponse>
     public int Number { get; set; }
 }
 
+[ValidateHasRole("Admin")]
 [ValidateHasRole("CommitteeMember")]
 [ValidateHasRole("NewMemberCoordinator")]
 [AutoApply(Behavior.AuditSoftDelete)]
