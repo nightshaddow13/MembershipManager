@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "MembershipManager.Client",
   "resources": {
-    "hash": "sha256-MOuVSyCWKlCBWf7z1HJ5c15kLAkTs/iMv13+VgFTYqM=",
+    "hash": "sha256-rD6sRvI1rGSX62bqlMxLNueF2B+6pK2skJSFloS/720=",
     "jsModuleNative": {
       "dotnet.native.8.0.5.j7ncxjcyuf.js": "sha256-boyHe+0RMZDkzBKGhsrnXPhPg3oZ6UqJnTUzngJPjNY="
     },
@@ -218,12 +218,12 @@
       "mscorlib.wasm": "sha256-XvLAB5IyfVSmj5aaGnPwgVFaaZz8jXmbN8WmeopiPBM=",
       "netstandard.wasm": "sha256-TbMssdnuTiKq1gjTPkpgROAuWN0uhvPnagvWR+wAgNs=",
       "System.Private.CoreLib.wasm": "sha256-sscg+Efk8ROPq+q4IVmhShzITuoOYvB8Bsc+Mp9vcSM=",
-      "MembershipManager.ServiceModel.wasm": "sha256-XDYGqCWIZJdF7t8oNT3W7KSqWKUZAm4wyWtJO1e89Jk=",
-      "MembershipManager.Client.wasm": "sha256-ekXgbhfhgHtwIUhHQwAnk85zw1FeKQQ+UPXhF63JwVw="
+      "MembershipManager.ServiceModel.wasm": "sha256-6xlxPrtnTBsJs6nvlQrKRLNWAJWxEoGjHpTIfc2zAH0=",
+      "MembershipManager.Client.wasm": "sha256-wY8UcoEb1czb5VsmZzhDb9Q5OPuDocptKXjC0J5LXZA="
     },
     "pdb": {
-      "MembershipManager.ServiceModel.pdb": "sha256-f914LbBB5g6DO2Sv1Wl52td2ooTpcR/EZOde4zGiBiw=",
-      "MembershipManager.Client.pdb": "sha256-y/neyW4bWmMitKLVjtOt7X74OQFjzXxHbobVUAJtEdk="
+      "MembershipManager.ServiceModel.pdb": "sha256-pjSdTxNDa9pIoq2HLU3TCObD06nSEmjotsO7xJeK6ZA=",
+      "MembershipManager.Client.pdb": "sha256-whUXRiE/AxNiTrpiRDPhFw3GfWA9pHNBIqjxf+W7qsk="
     }
   },
   "cacheBootResources": true,

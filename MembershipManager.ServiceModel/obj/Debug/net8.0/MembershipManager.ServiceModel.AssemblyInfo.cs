@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MembershipManager.ServiceModel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f361b7fab297bc94327e4bc3b2ef6796c9aafa1d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+61945e5bbfe31f6140cbc834caf6c50fa1226ef9")]
 [assembly: System.Reflection.AssemblyProductAttribute("MembershipManager.ServiceModel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MembershipManager.ServiceModel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
