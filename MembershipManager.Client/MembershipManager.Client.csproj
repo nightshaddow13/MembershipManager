@@ -20,4 +20,8 @@
     <ItemGroup>
       <ProjectReference Include="..\MembershipManager.ServiceModel\MembershipManager.ServiceModel.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Pages\Secure\" />
+    </ItemGroup>
 </Project>
