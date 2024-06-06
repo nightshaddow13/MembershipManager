@@ -37,18 +37,18 @@ public enum Sex
 [AutoApply(Behavior.AuditQuery)]
 public class QueryUnit : QueryDb<Unit> { }
 
-[ValidateHasRole("Admin")]
-[ValidateHasRole("MembershipChair")]
-[ValidateHasRole("CouncilExecutive")]
-[ValidateHasRole("CommitteeMember")]
+[ValidateHasRole(Roles.Admin)]
+[ValidateHasRole(Roles.MembershipChair)]
+[ValidateHasRole(Roles.CouncilExecutive)]
+[ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditCreate)]
 public class CreateUnit : ICreateDb<Unit>, IReturn<IdResponse>
 {
-    [ApiAllowableValues(typeof(UnitType))]
-    public UnitType Type { get; set; }
-
     [ApiAllowableValues(typeof(Sex))]
     public Sex Sex { get; set; }
+
+    [ApiAllowableValues(typeof(UnitType))]
+    public UnitType Type { get; set; }
 
     [ValidateGreaterThan(0)]
     public int Number { get; set; }
@@ -64,11 +64,11 @@ public class UpdateUnit : IPatchDb<Unit>, IReturn<IdResponse>
 {
     public int Id { get; set; }
 
-    [ApiAllowableValues(typeof(UnitType))]
-    public UnitType Type { get; set; }
-
     [ApiAllowableValues(typeof(Sex))]
     public Sex Sex { get; set; }
+
+    [ApiAllowableValues(typeof(UnitType))]
+    public UnitType Type { get; set; }
 
     [ValidateGreaterThan(0)]
     public int Number { get; set; }

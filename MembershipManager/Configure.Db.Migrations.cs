@@ -46,10 +46,9 @@ public class ConfigureDbMigrations : IHostingStartup
 
     private async Task AddSeedUsers(IServiceProvider services)
     {
-        //initializing custom roles 
         var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
         var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-        string[] allRoles = [Roles.Admin, Roles.Manager, Roles.Employee];
+        string[] allRoles = [Roles.Admin, Roles.NewMemberCoordinator, Roles.Committee, Roles.CouncilExecutive, Roles.MembershipChair];
 
         void assertResult(IdentityResult result)
         {
@@ -90,28 +89,6 @@ public class ConfigureDbMigrations : IHostingStartup
             EmailConfirmed = true,
             ProfileUrl = "/img/profiles/user1.svg",
         }, "p@55wOrd");
-
-        await EnsureUserAsync(new ApplicationUser
-        {
-            DisplayName = "Test Employee",
-            Email = "employee@email.com",
-            UserName = "employee@email.com",
-            FirstName = "Test",
-            LastName = "Employee",
-            EmailConfirmed = true,
-            ProfileUrl = "/img/profiles/user2.svg",
-        }, "p@55wOrd", [Roles.Employee]);
-
-        await EnsureUserAsync(new ApplicationUser
-        {
-            DisplayName = "Test Manager",
-            Email = "manager@email.com",
-            UserName = "manager@email.com",
-            FirstName = "Test",
-            LastName = "Manager",
-            EmailConfirmed = true,
-            ProfileUrl = "/img/profiles/user3.svg",
-        }, "p@55wOrd", [Roles.Manager, Roles.Employee]);
 
         await EnsureUserAsync(new ApplicationUser
         {

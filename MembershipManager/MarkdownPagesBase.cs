@@ -128,7 +128,7 @@ public abstract class MarkdownPagesBase<T>(ILogger log, IWebHostEnvironment env,
         if (doc == null || !env.IsDevelopment() || AppTasks.IsRunAsAppTask())
             return doc;
         var newDoc = Load(doc.Path);
-        doc.Update(newDoc);
+        doc.Update(newDoc!);
         return doc;
     }
 
@@ -161,6 +161,7 @@ public abstract class MarkdownPagesBase<T>(ILogger log, IWebHostEnvironment env,
         doc.Tags = doc.Tags.Map(x => x.Trim());
         doc.Content = content;
         doc.DocumentMap = document.GetData(nameof(DocumentMap)) as DocumentMap;
+        log.LogInformation("Hello There");
 
         return doc;
     }
@@ -715,6 +716,6 @@ public class MarkdownMenu
 }
 public class MarkdownMenuItem
 {
-    public string Text { get; set; } 
-    public string Link { get; set; } 
+    public string Text { get; set; } = string.Empty;
+    public string Link { get; set; } = string.Empty;
 }
