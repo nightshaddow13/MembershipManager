@@ -9,7 +9,10 @@ public class Unit : AuditBase
 {
     [AutoIncrement]
     public int Id { get; set; }
-    // todo: add district
+
+    [ForeignKey(typeof(District))]
+    public int DistrictId { get; set; }
+
     public UnitType Type { get; set; }
     public Sex Sex { get; set; }
     public int Number { get; set; }
@@ -52,6 +55,8 @@ public class CreateUnit : ICreateDb<Unit>, IReturn<IdResponse>
 
     [ValidateGreaterThan(0)]
     public int Number { get; set; }
+
+    public int DistrictId { get; set; }
 }
 
 [ValidateHasRole("Admin")]
@@ -72,6 +77,8 @@ public class UpdateUnit : IPatchDb<Unit>, IReturn<IdResponse>
 
     [ValidateGreaterThan(0)]
     public int Number { get; set; }
+
+    public int DistrictId { get; set; }
 }
 
 [ValidateHasRole("Admin")]

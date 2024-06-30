@@ -10,7 +10,7 @@ namespace MembershipManager.Tests;
 public class MigrationTasks
 {
     IDbConnectionFactory ResolveDbFactory() => new ConfigureDb().ConfigureAndResolve<IDbConnectionFactory>();
-    Migrator CreateMigrator() => new(ResolveDbFactory(), typeof(Migration0001_AddUnit).Assembly); 
+    Migrator CreateMigrator() => new(ResolveDbFactory(), typeof(Migration0002_AddCouncilAndDistrict).Assembly); 
     
     [Test]
     public void Migrate()
