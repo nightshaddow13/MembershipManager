@@ -3,15 +3,15 @@ using ServiceStack.OrmLite;
 
 namespace MembershipManager.Migrations;
 
-public class Migration0001_AddUnit : MigrationBase
+public class Migration0003_AddDistrictToUnit : MigrationBase
 {
     public override void Up()
     {
-        Db.CreateTable<Unit>();
+        Db.DropAndCreateTable<Unit>();
     }
 
     public override void Down()
     {
-        Db.DropTable<Unit>();
+        Db.DropAndCreateTable<Unit>();
     }
 }
