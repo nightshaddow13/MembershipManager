@@ -11,12 +11,9 @@ public class School : AuditBase
     public int Id { get; set; }
 
     public string Description { get; set; } = string.Empty;
-    public string Address { get; set; } = string.Empty;
 
-    // todo: convert address to new table using zip code as a reference
-    public string City { get; set; } = string.Empty;
-    public string State { get; set; } = string.Empty;
-    public string Zip { get; set; } = string.Empty;
+    [ForeignKey(typeof(Location))]
+    public int LocationId { get; set; }
 
     public SchoolType SchoolType { get; set; }
     public GradeLevels GradeLevels { get; set; }
@@ -58,10 +55,7 @@ public class QuerySchool : QueryDb<School> { }
 public class CreateSchool : ICreateDb<School>, IReturn<IdResponse>
 {
     public string Description { get; set; } = string.Empty;
-    public string Address { get; set; } = string.Empty;
-    public string City { get; set; } = string.Empty;
-    public string State { get; set; } = string.Empty;
-    public string Zip { get; set; } = string.Empty;
+    public int LocationId { get; set; }
 
     [ApiAllowableValues(typeof(SchoolType))]
     public SchoolType SchoolType { get; set; }
@@ -78,10 +72,7 @@ public class CreateSchool : ICreateDb<School>, IReturn<IdResponse>
 public class UpdateSchool : IPatchDb<School>, IReturn<IdResponse>
 {
     public string Description { get; set; } = string.Empty;
-    public string Address { get; set; } = string.Empty;
-    public string City { get; set; } = string.Empty;
-    public string State { get; set; } = string.Empty;
-    public string Zip { get; set; } = string.Empty;
+    public int LocationId { get; set; }
 
     [ApiAllowableValues(typeof(GradeLevels))]
     public GradeLevels GradeLevels { get; set; }
