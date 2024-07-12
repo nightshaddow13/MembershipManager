@@ -1,4 +1,5 @@
 ﻿using ServiceStack;
+using ServiceStack.DataAnnotations;
 
 namespace MembershipManager.ServiceModel;
 
@@ -7,12 +8,11 @@ namespace MembershipManager.ServiceModel;
 public class ZipCode : AuditBase
 {
     public int Id { get; set; }
-
-    // todo: convert address to new table using zip code as a reference
     public string City { get; set; } = string.Empty;
     public State State { get; set; } = State.FL;
 
-    // todo: add contact linkage
+    [Reference]
+    public List<Location> Locations { get; set; } = [];
 }
 
 public enum State
