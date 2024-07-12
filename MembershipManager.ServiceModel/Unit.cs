@@ -16,6 +16,9 @@ public class Unit : AuditBase
     public UnitType Type { get; set; }
     public Sex Sex { get; set; }
     public int Number { get; set; }
+
+    [Reference]
+    public List<EventUnit> EventsLink { get; set; } = [];
 }
 
 public enum UnitType
