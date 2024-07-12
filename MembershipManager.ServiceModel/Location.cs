@@ -15,6 +15,9 @@ public class Location : AuditBase
 
     [ForeignKey(typeof(ZipCode))]
     public int ZipCode { get; set; }
+
+    [Reference]
+    public List<School> Schools { get; set; } = [];
 }
 
 #endregion

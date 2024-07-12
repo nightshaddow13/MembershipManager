@@ -18,7 +18,8 @@ public class School : AuditBase
     public SchoolType SchoolType { get; set; }
     public GradeLevels GradeLevels { get; set; }
 
-    // todo: add contact linkage
+    [Reference]
+    public List<EventSchool> EventsLink { get; set; } = [];
 }
 
 public enum GradeLevels
