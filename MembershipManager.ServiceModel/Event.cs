@@ -27,6 +27,9 @@ public class Event : AuditBase
 
     [Reference]
     public List<EventUnit> UnitsLink { get; set; } = [];
+
+    [Reference]
+    public List<EventNote> NotesLink { get; set; } = [];
 }
 
 public enum EventType

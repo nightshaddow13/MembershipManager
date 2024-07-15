@@ -20,6 +20,12 @@ public class School : AuditBase
 
     [Reference]
     public List<EventSchool> EventsLink { get; set; } = [];
+
+    [Reference]
+    public List<UnitSchool> UnitsLink { get; set; } = [];
+
+    [Reference]
+    public List<SchoolNote> NotesLink { get; set; } = [];
 }
 
 public enum GradeLevels

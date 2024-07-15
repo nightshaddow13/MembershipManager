@@ -19,6 +19,12 @@ public class Unit : AuditBase
 
     [Reference]
     public List<EventUnit> EventsLink { get; set; } = [];
+
+    [Reference]
+    public List<UnitSchool> SchoolsLink { get; set; } = [];
+
+    [Reference]
+    public List<UnitNote> NotesLink { get; set; } = [];
 }
 
 public enum UnitType
