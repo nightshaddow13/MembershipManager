@@ -82,4 +82,4 @@ jobs:
         app-name: 'wa-mmbrshpmngr-01'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_00a74a1b75384e9e9f43a50f4a979abe }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_014ea885134240e78c9f95bb7c8baf86 }}/mmbrshpmngr:${{ github.event.inputs.version }}'
+        images: 'ghcr.io/nightshaddow13/${{ env.image_repository_name }}:${{ env.TAG_NAME }}'
