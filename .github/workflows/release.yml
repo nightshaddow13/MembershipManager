@@ -67,19 +67,11 @@ jobs:
         run: |
           dotnet publish --os linux --arch x64 -c Release -p:ContainerRepository=${{ env.image_repository_name }} -p:ContainerRegistry=ghcr.io -p:ContainerImageTags=${{ env.TAG_NAME }} -p:ContainerPort=80
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: push_to_registry
-    environment:
-      name: 'production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-
-    steps:
-    - name: Deploy to Azure Web App
-      id: deploy-to-webapp
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'wa-mmbrshpmngr-01'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_00a74a1b75384e9e9f43a50f4a979abe }}
-        images: 'ghcr.io/${{ env.image_repository_name }}:${{ env.TAG_NAME }}'
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'wa-mmbrshpmngr-01'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_00a74a1b75384e9e9f43a50f4a979abe }}
+          images: 'ghcr.io/${{ env.image_repository_name }}:${{ env.TAG_NAME }}'
