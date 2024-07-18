@@ -55,7 +55,7 @@
     
     <ItemGroup>
       <None Update="App_Data\README.md">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       </None>
     </ItemGroup>
 

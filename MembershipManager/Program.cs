@@ -31,8 +31,8 @@ services.AddAuthentication(options =>
         options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
     })
     .AddIdentityCookies();
-services.AddDataProtection()
-    .PersistKeysToFileSystem(new DirectoryInfo("App_Data"));
+//services.AddDataProtection()
+//    .PersistKeysToFileSystem(new DirectoryInfo("App_Data"));
 
 services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
