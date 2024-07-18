@@ -52,5 +52,11 @@
         <ProjectReference Include="..\MembershipManager.ServiceInterface\MembershipManager.ServiceInterface.csproj" />
         <ProjectReference Include="..\MembershipManager.ServiceModel\MembershipManager.ServiceModel.csproj" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <None Update="App_Data\README.md">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
 
 </Project>
