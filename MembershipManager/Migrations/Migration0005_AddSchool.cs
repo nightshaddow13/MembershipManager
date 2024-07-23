@@ -3,7 +3,7 @@ using ServiceStack.OrmLite;
 
 namespace MembershipManager.Migrations;
 
-public class Migration0004_AddSchool : MigrationBase
+public class Migration0005_AddSchool : MigrationBase
 {
     public override void Up()
     {

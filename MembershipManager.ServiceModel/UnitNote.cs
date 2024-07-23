@@ -22,6 +22,10 @@ public class UnitNote : AuditBase
 
 #region Interactions
 
+[ValidateHasRole(Roles.Admin)]
+[ValidateHasRole(Roles.MembershipChair)]
+[ValidateHasRole(Roles.CouncilExecutive)]
+[ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditQuery)]
 public class QueryUnitNote : QueryDb<UnitNote> { }
 

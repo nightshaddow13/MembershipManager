@@ -3,7 +3,7 @@ using ServiceStack.OrmLite;
 
 namespace MembershipManager.Migrations;
 
-public class Migration0005_AddZipAndLocations : MigrationBase
+public class Migration0004_AddZipAndLocations : MigrationBase
 {
     public override void Up()
     {
