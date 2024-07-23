@@ -3,7 +3,7 @@ using ServiceStack.OrmLite;
 
 namespace MembershipManager.Migrations;
 
-public class Migration0002_AddCouncilAndDistrict : MigrationBase
+public class Migration0001_AddCouncilAndDistrict : MigrationBase
 {
     public override void Up()
     {
