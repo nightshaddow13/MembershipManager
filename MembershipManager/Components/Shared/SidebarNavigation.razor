@@ -1,0 +1,18 @@
+﻿<nav class="mt-5 flex-1 px-2 bg-white dark:bg-black space-y-1">
+    <NavLink href="profile" ActiveClass="@DesktopNavLinkActiveClass" class="@DesktopNavLinkClass">
+        <img class="mr-4 flex-shrink-0 h-6 w-6" src="/img/nav/profile.svg">
+        Profile
+    </NavLink>
+    <NavLink href="locode" ActiveClass="@DesktopNavLinkActiveClass" class="@DesktopNavLinkClass">
+        <img class="mr-4 flex-shrink-0 h-6 w-6" src="/img/nav/profile.svg">
+        Locode
+    </NavLink>
+</nav>
+
+@code {
+    const string MobileNavLinkActiveClass = "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-50";
+    const string MobileNavLinkClass = "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-gray-50 group flex items-center px-2 py-2 text-sm font-medium rounded-md";
+
+    const string DesktopNavLinkActiveClass = "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-50";
+    const string DesktopNavLinkClass = "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-900 hover:text-gray-900 dark:hover:text-gray-50 group flex items-center px-2 py-2 font-medium rounded-md";
+}
