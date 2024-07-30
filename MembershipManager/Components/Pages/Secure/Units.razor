@@ -1,0 +1,14 @@
+﻿@page "/units"
+@attribute [Authorize(Roles = "Admin")]
+@inherits AuthBlazorComponentBase
+@inject NavigationManager NavigationManager
+
+<h3>Units</h3>
+
+<AutoQueryGrid Model="Unit" Apis="Apis.AutoQuery<QueryUnit>()">
+
+</AutoQueryGrid>
+
+@code {
+    
+}

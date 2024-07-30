@@ -17,5 +17,9 @@ public class ConfigureAutoQuery : IHostingStartup
                 MaxLimit = 1000,
                 //IncludeTotal = true,
             });
+        })
+        .ConfigureAppHost(appHost =>
+        {
+            appHost.Resolve<ICrudEvents>().InitSchema();
         });
 }

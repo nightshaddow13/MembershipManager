@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using MembershipManager.Client.Pages;
 using MembershipManager.Components;
 using MembershipManager.Components.Account;
@@ -19,6 +17,9 @@ var config = builder.Configuration;
 services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddScoped<ServiceStackStateProvider>();
+builder.Services.AddScoped<AuthenticationStateProvider>(s => s.GetRequiredService<ServiceStackStateProvider>());
 
 services.AddCascadingAuthenticationState();
 services.AddScoped<IdentityUserAccessor>();
@@ -50,6 +51,9 @@ var baseUrl = builder.Configuration["ApiBaseUrl"] ??
 services.AddScoped(c => new HttpClient { BaseAddress = new Uri(baseUrl) });
 services.AddBlazorServerIdentityApiClient(baseUrl);
 services.AddLocalStorage();
+
+//builder.Services.AddScoped<KeyboardNavigation>();
+//builder.Services.AddScoped<UserState>();
 
 // Register all services
 services.AddServiceStack(typeof(MyServices).Assembly);
