@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        default: latest
+        default: $GITHUB_SHA
         description: Tag you want to release.
         required: true
 
