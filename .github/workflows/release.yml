@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        default: $GITHUB_SHA
+        default: latest
         description: Tag you want to release.
         required: true
 
@@ -33,7 +33,7 @@ jobs:
         if: ${{ github.event.inputs.version != '' && github.event.inputs.version != 'latest' }}
         uses: actions/checkout@v3
         with:
-          ref: refs/tags/${{ $GITHUB_SHA }}
+          ref: refs/tags/$GITHUB_SHA
           
       # Assign environment variables used in subsequent steps
       - name: Env variable assignment
