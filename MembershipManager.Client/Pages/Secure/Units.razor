@@ -1,0 +1,12 @@
+﻿@page "/secure/units"
+@attribute [Authorize(Roles = Roles.MembershipChair)]
+@rendermode InteractiveAuto
+@inject IJSRuntime JS
+
+<h3>Units</h3>
+
+<AutoQueryGrid Model="Unit" Apis="Apis.AutoQuery<QueryUnit>()" />
+
+@code {
+
+}

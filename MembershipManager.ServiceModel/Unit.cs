@@ -72,11 +72,10 @@ public class CreateUnit : ICreateDb<Unit>, IReturn<IdResponse>
     public int DistrictId { get; set; }
 }
 
-[ValidateHasRole("Admin")]
-[ValidateHasRole("MembershipChair")]
-[ValidateHasRole("CouncilExecutive")]
-[ValidateHasRole("CommitteeMember")]
-[ValidateHasRole("NewMemberCoordinator")]
+[ValidateHasRole(Roles.Admin)]
+[ValidateHasRole(Roles.MembershipChair)]
+[ValidateHasRole(Roles.CouncilExecutive)]
+[ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditModify)]
 public class UpdateUnit : IPatchDb<Unit>, IReturn<IdResponse>
 {
@@ -94,9 +93,10 @@ public class UpdateUnit : IPatchDb<Unit>, IReturn<IdResponse>
     public int DistrictId { get; set; }
 }
 
-[ValidateHasRole("Admin")]
-[ValidateHasRole("CommitteeMember")]
-[ValidateHasRole("NewMemberCoordinator")]
+[ValidateHasRole(Roles.Admin)]
+[ValidateHasRole(Roles.MembershipChair)]
+[ValidateHasRole(Roles.CouncilExecutive)]
+[ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditSoftDelete)]
 public class DeleteUnit : IDeleteDb<Unit>, IReturnVoid
 {

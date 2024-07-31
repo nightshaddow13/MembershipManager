@@ -11,6 +11,7 @@ public class UnitSchool : AuditBase
     [AutoIncrement]
     public int Id { get; set; }
 
+    [Ref(Model = nameof(Unit), RefId = nameof(Unit.Id), RefLabel = nameof(Unit.Number))]
     [ForeignKey(typeof(Unit))]
     public int UnitId { get; set; }
 
