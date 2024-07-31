@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        default: ${{ $GITHUB_SHA }}
+        default: 
         description: Tag you want to release.
         required: true
 
@@ -27,10 +27,10 @@ jobs:
     steps:
       # Checkout latest or specific tag
       - name: checkout
-        if: ${{ github.event.inputs.version == '' || github.event.inputs.version == 'latest' }}
+        if: ${{ github.event.inputs.version == '' || github.event.inputs.version == $GITHUB_SHA }}
         uses: actions/checkout@v3
       - name: checkout tag
-        if: ${{ github.event.inputs.version != '' && github.event.inputs.version != 'latest' }}
+        if: ${{ github.event.inputs.version != '' && github.event.inputs.version != $GITHUB_SHA }}
         uses: actions/checkout@v3
         with:
           ref: refs/tags/${{ github.event.inputs.version }}
