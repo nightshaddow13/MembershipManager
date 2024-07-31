@@ -46,7 +46,7 @@ jobs:
             echo "TAG_NAME=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
           fi;
           if [ "${{ github.event.inputs.version }}" != "" ]; then
-            echo "TAG_NAME=${{ github.event.inputs.version }}" >> $GITHUB_ENV
+            echo "TAG_NAME=$GITHUB_SHA" >> $GITHUB_ENV
           fi;
       
       - name: Login to GitHub Container Registry
