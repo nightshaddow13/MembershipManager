@@ -10,8 +10,12 @@ public class Unit : AuditBase
     [AutoIncrement]
     public int Id { get; set; }
 
-    [ForeignKey(typeof(District))]
+    [Ref(Model = nameof(District), RefId = nameof(District.Id), RefLabel = nameof(District.Description))]
+    [References(typeof(District))]
     public int DistrictId { get; set; }
+
+    [Reference]
+    public District District { get; set; } = default!;
 
     public UnitType Type { get; set; }
     public Sex Sex { get; set; }
@@ -46,17 +50,13 @@ public enum Sex
 
 #region Interactions
 
-[ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
+[Tag("Units"), Description("Find Units")]
 [ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditQuery)]
-public class QueryUnit : QueryDb<Unit> { }
+public class QueryUnits : QueryDb<Unit> { }
 
-[ValidateHasRole(Roles.Admin)]
+[Tag("Units"), Description("Create a new Unit")]
 [ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
-[ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditCreate)]
 public class CreateUnit : ICreateDb<Unit>, IReturn<IdResponse>
 {
@@ -72,10 +72,8 @@ public class CreateUnit : ICreateDb<Unit>, IReturn<IdResponse>
     public int DistrictId { get; set; }
 }
 
-[ValidateHasRole(Roles.Admin)]
+[Tag("Units"), Description("Update an existing Unit")]
 [ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
-[ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditModify)]
 public class UpdateUnit : IPatchDb<Unit>, IReturn<IdResponse>
 {
@@ -93,10 +91,8 @@ public class UpdateUnit : IPatchDb<Unit>, IReturn<IdResponse>
     public int DistrictId { get; set; }
 }
 
-[ValidateHasRole(Roles.Admin)]
+[Tag("Units"), Description("Delete a Unit")]
 [ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
-[ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditSoftDelete)]
 public class DeleteUnit : IDeleteDb<Unit>, IReturnVoid
 {

@@ -1,11 +1,26 @@
 ﻿@page "/secure/units"
-@attribute [Authorize(Roles = Roles.MembershipChair)]
+@attribute [Authorize(Roles = $"{Roles.MembershipChair},{Roles.Committee}")]
 @rendermode InteractiveAuto
 @inject IJSRuntime JS
 
 <h3>Units</h3>
 
-<AutoQueryGrid Model="Unit" Apis="Apis.AutoQuery<QueryUnit>()" />
+<AutoQueryGrid Model="Unit" Apis="Apis.AutoQuery<QueryUnits, CreateUnit, UpdateUnit, DeleteUnit>()">
+    <Columns>
+        <Column Field="(Unit x) => x.DistrictId">
+            <Header>District</Header>
+            <Template>
+                @context.District.Description
+            </Template>
+        </Column>
+        <Column Field="(Unit x) => x.Sex" />
+        <Column Field="(Unit x) => x.Type" />
+        <Column Field="(Unit x) => x.Number" />
+        <Column Field="(Unit x) => x.NotesLink" VisibleFrom="Breakpoint.Large" />
+        <Column Field="(Unit x) => x.EventsLink" VisibleFrom="Breakpoint.ExtraLarge" />
+        <Column Field="(Unit x) => x.SchoolsLink" VisibleFrom="Breakpoint.ExtraLarge2x" />
+    </Columns>
+</AutoQueryGrid>
 
 @code {
 
