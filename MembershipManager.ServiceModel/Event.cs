@@ -5,6 +5,7 @@ namespace MembershipManager.ServiceModel;
 
 #region Base definition
 
+[Icon(Svg = Icons.Event)]
 public class Event : AuditBase
 {
     [AutoIncrement]

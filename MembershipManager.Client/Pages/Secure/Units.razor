@@ -20,6 +20,11 @@
         <Column Field="(Unit x) => x.EventsLink" VisibleFrom="Breakpoint.ExtraLarge" />
         <Column Field="(Unit x) => x.SchoolsLink" VisibleFrom="Breakpoint.ExtraLarge2x" />
     </Columns>
+    @* <EditForm>
+        <form>
+            <AutoFormFields Type="Unit" Api="typeof(UpdateUnit)" ModelDictionary="@context"/>
+        </form>
+    </EditForm> *@
 </AutoQueryGrid>
 
 @code {

@@ -5,6 +5,7 @@ namespace MembershipManager.ServiceModel;
 
 #region Base definition
 
+[Icon(Svg = Icons.Earth)]
 public class District : AuditBase
 {
     [AutoIncrement]

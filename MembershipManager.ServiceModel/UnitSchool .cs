@@ -5,6 +5,7 @@ namespace MembershipManager.ServiceModel;
 
 #region Base definition
 
+[Icon(Svg = Icons.School)]
 [UniqueConstraint(nameof(UnitId), nameof(SchoolId))]
 public class UnitSchool : AuditBase
 {
@@ -15,9 +16,15 @@ public class UnitSchool : AuditBase
     [References(typeof(Unit))]
     public int UnitId { get; set; }
 
+    [Reference]
+    public Unit Unit { get; set; } = default!;
+
     [Ref(Model = nameof(School), RefId = nameof(School.Id), RefLabel = nameof(School.Description))]
     [References(typeof(School))]
     public int SchoolId { get; set; }
+
+    [Reference]
+    public School School { get; set; } = default!;
 }
 
 #endregion
