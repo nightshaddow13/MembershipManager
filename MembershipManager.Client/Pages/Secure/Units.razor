@@ -20,13 +20,27 @@
         <Column Field="(Unit x) => x.EventsLink" VisibleFrom="Breakpoint.ExtraLarge" />
         <Column Field="(Unit x) => x.SchoolsLink" VisibleFrom="Breakpoint.ExtraLarge2x" />
     </Columns>
-    @* <EditForm>
-        <form>
-            <AutoFormFields Type="Unit" Api="typeof(UpdateUnit)" ModelDictionary="@context"/>
-        </form>
-    </EditForm> *@
 </AutoQueryGrid>
 
 @code {
+    [Inject] public JsonApiClient? Client { get; set; }
+    IHasErrorStatus? Api { get; set; }
+    Type ApiType = typeof(UpdateUnit);
+    List<InputInfo>? FormLayout { get; set; }
+    Dictionary<string, object> ModelDictionary { get; set; } = new();
+    MetadataType MetadataType => ApiType.ToMetadataType();
 
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+        Api = null;
+
+        FormLayout ??= MetadataType.CreateFormLayout<Unit>();
+    }
+
+    async Task submit()
+    {
+        var request = ModelDictionary.FromModelDictionary<UpdateUnit>();
+        Api = await Client!.ApiAsync(request);
+    }
 }
