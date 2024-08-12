@@ -60,6 +60,13 @@
             <Columns>
                 <Column Field="(Note x) => x.Description" />
             </Columns>
+            <CreateForm>
+                <form>
+                    <AutoFormFields Type="typeof(Note)" Api="EditNoteApi" ModelDictionary="typeof(Note).ToModelDictionary()" />
+                    <AutoFormFields Type="typeof(Note)" Api="EditUnitNoteApi" ModelDictionary="typeof(Note).ToModelDictionary()" />
+                    <button type="submit">Create</button>
+                </form>
+            </CreateForm>
         </AutoQueryGrid>
     </div>
 </MMSlideover>
