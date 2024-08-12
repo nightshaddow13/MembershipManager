@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using MembershipManager.ServiceModel;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using ServiceStack;
 
@@ -11,6 +12,15 @@ public partial class Units
     bool isNotesOpen = false;
     bool isSchoolsOpen = false;
     bool isEventsOpen = false;
+
+    private List<AutoQueryConvention> noteFilters = new List<AutoQueryConvention>()
+    {
+        new()
+        {
+            Name = nameof(Note.Id),
+            Value = "2"
+        }
+    };
 
     protected void OnNotesClicked(MouseEventArgs args)
     {

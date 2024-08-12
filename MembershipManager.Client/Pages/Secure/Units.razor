@@ -19,7 +19,7 @@
             <Template>
                 <TextLink onclick="OnNotesClicked" href="/secure/units">
                     <div style="display: inline-flex; align-items: center;">
-                        <Icon Image="typeof(Note).GetIcon()" />
+                        <Icon Image="typeof(UnitNote).GetIcon()" />
                         <div style="margin-left: 5px;">
                             @(context.NotesLink.Count) Notes
                         </div>
@@ -31,7 +31,7 @@
             <Template>
                 <TextLink onclick="OnEventsClicked" href="/secure/units">
                     <div style="display: inline-flex; align-items: center;">
-                        <Icon Image="typeof(Event).GetIcon()" />
+                        <Icon Image="typeof(EventUnit).GetIcon()" />
                         <div style="margin-left: 5px;">
                             @(context.EventsLink.Count) Events
                         </div>
@@ -43,7 +43,7 @@
             <Template>
                 <TextLink onclick="OnSchoolsClicked" href="/secure/units">
                     <div style="display: inline-flex; align-items: center;">
-                        <Icon Image="typeof(School).GetIcon()" />
+                        <Icon Image="typeof(UnitSchool).GetIcon()" />
                         <div style="margin-left: 5px;">
                             @(context.SchoolsLink.Count) Schools
                         </div>
@@ -55,9 +55,12 @@
 </AutoQueryGrid>
 
 <MMSlideover @bind-IsOpen="isNotesOpen" Title="Unit Notes">
-    <p>
-        Todo: UI with a list of notes for the unit and the option to create a new note
-    </p>
+    @* todo: add the ability to query for a specific list of notes *@
+    <AutoQueryGrid Model="Note" Apis="Apis.AutoQuery<QueryNotes, CreateNote, UpdateNote, DeleteNote>()">
+        <Columns>
+            <Column Field="(Note x) => x.Description" />
+        </Columns>
+    </AutoQueryGrid>
 </MMSlideover>
 
 <MMSlideover @bind-IsOpen="isEventsOpen" Title="Unit Events">
