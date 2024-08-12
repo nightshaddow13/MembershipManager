@@ -62,5 +62,9 @@
     <ItemGroup>
       <Folder Include="Components\Units\" />
     </ItemGroup>
+    
+    <ItemGroup>
+      <None Include="..\MembershipManager.Client\Pages\Secure\MMSlideover.razor" Link="MMSlideover.razor" />
+    </ItemGroup>
 
 </Project>

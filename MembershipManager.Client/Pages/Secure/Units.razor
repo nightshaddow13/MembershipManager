@@ -1,7 +1,6 @@
 ﻿@page "/secure/units"
 @attribute [Authorize(Roles = $"{Roles.MembershipChair},{Roles.Committee}")]
 @rendermode InteractiveAuto
-@inject IJSRuntime JS
 
 <h3>Units</h3>
 
@@ -16,31 +15,59 @@
         <Column Field="(Unit x) => x.Sex" />
         <Column Field="(Unit x) => x.Type" />
         <Column Field="(Unit x) => x.Number" />
-        <Column Field="(Unit x) => x.NotesLink" VisibleFrom="Breakpoint.Large" />
-        <Column Field="(Unit x) => x.EventsLink" VisibleFrom="Breakpoint.ExtraLarge" />
-        <Column Field="(Unit x) => x.SchoolsLink" VisibleFrom="Breakpoint.ExtraLarge2x" />
+        <Column Field="(Unit x) => x.NotesLink" VisibleFrom="Breakpoint.Large">
+            <Template>
+                <TextLink onclick="OnNotesClicked" href="/secure/units">
+                    <div style="display: inline-flex; align-items: center;">
+                        <Icon Image="typeof(Note).GetIcon()" />
+                        <div style="margin-left: 5px;">
+                            @(context.NotesLink.Count) Notes
+                        </div>
+                    </div>
+                </TextLink>
+            </Template>
+        </Column>
+        <Column Field="(Unit x) => x.EventsLink" VisibleFrom="Breakpoint.ExtraLarge">
+            <Template>
+                <TextLink onclick="OnEventsClicked" href="/secure/units">
+                    <div style="display: inline-flex; align-items: center;">
+                        <Icon Image="typeof(Event).GetIcon()" />
+                        <div style="margin-left: 5px;">
+                            @(context.EventsLink.Count) Events
+                        </div>
+                    </div>
+                </TextLink>
+            </Template>
+        </Column>
+        <Column Field="(Unit x) => x.SchoolsLink" VisibleFrom="Breakpoint.ExtraLarge2x">
+            <Template>
+                <TextLink onclick="OnSchoolsClicked" href="/secure/units">
+                    <div style="display: inline-flex; align-items: center;">
+                        <Icon Image="typeof(School).GetIcon()" />
+                        <div style="margin-left: 5px;">
+                            @(context.SchoolsLink.Count) Schools
+                        </div>
+                    </div>
+                </TextLink>
+            </Template>
+        </Column>
     </Columns>
 </AutoQueryGrid>
 
-@code {
-    [Inject] public JsonApiClient? Client { get; set; }
-    IHasErrorStatus? Api { get; set; }
-    Type ApiType = typeof(UpdateUnit);
-    List<InputInfo>? FormLayout { get; set; }
-    Dictionary<string, object> ModelDictionary { get; set; } = new();
-    MetadataType MetadataType => ApiType.ToMetadataType();
+<MMSlideover @bind-IsOpen="isNotesOpen" Title="Unit Notes">
+    <p>
+        Todo: UI with a list of notes for the unit and the option to create a new note
+    </p>
+</MMSlideover>
 
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-        Api = null;
+<MMSlideover @bind-IsOpen="isEventsOpen" Title="Unit Events">
+    <p>
+        Todo: UI with a list of events for the unit and the option to create a new event
+    </p>
+</MMSlideover>
 
-        FormLayout ??= MetadataType.CreateFormLayout<Unit>();
-    }
-
-    async Task submit()
-    {
-        var request = ModelDictionary.FromModelDictionary<UpdateUnit>();
-        Api = await Client!.ApiAsync(request);
-    }
-}
+<MMSlideover @bind-IsOpen="isSchoolsOpen" Title="Unit Schools">
+    <p>
+        Todo: UI with a list of schools for the unit and the option to create a new school
+    </p>
+</MMSlideover>
