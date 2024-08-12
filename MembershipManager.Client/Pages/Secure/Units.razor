@@ -17,7 +17,7 @@
         <Column Field="(Unit x) => x.Number" />
         <Column Field="(Unit x) => x.NotesLink" VisibleFrom="Breakpoint.Large">
             <Template>
-                <TextLink onclick="OnNotesClicked" href="/secure/units">
+                <TextLink onclick="() => OnNotesClicked(context)" href="/secure/units">
                     <div style="display: inline-flex; align-items: center;">
                         <Icon Image="typeof(UnitNote).GetIcon()" />
                         <div style="margin-left: 5px;">
@@ -55,12 +55,13 @@
 </AutoQueryGrid>
 
 <MMSlideover @bind-IsOpen="isNotesOpen" Title="Unit Notes">
-    @* todo: add the ability to query for a specific list of notes *@
-    <AutoQueryGrid Model="Note" Apis="Apis.AutoQuery<QueryNotes, CreateNote, UpdateNote, DeleteNote>()">
-        <Columns>
-            <Column Field="(Note x) => x.Description" />
-        </Columns>
-    </AutoQueryGrid>
+    <div style="margin: 20px;">
+        <AutoQueryGrid Model="Note" Apis="Apis.AutoQuery<QueryNotes, CreateNote, UpdateNote, DeleteNote>()" ConfigureQuery="Configure" >
+            <Columns>
+                <Column Field="(Note x) => x.Description" />
+            </Columns>
+        </AutoQueryGrid>
+    </div>
 </MMSlideover>
 
 <MMSlideover @bind-IsOpen="isEventsOpen" Title="Unit Events">

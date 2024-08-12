@@ -1,7 +1,9 @@
 ﻿using MembershipManager.ServiceModel;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Newtonsoft.Json;
 using ServiceStack;
+using System.Text.Json.Serialization;
 
 namespace MembershipManager.Client.Pages.Secure;
 
@@ -9,22 +11,16 @@ public partial class Units
 {
     [Inject] public JsonApiClient? Client { get; set; }
 
-    bool isNotesOpen = false;
-    bool isSchoolsOpen = false;
-    bool isEventsOpen = false;
+    private bool isNotesOpen = false;
+    private bool isSchoolsOpen = false;
+    private bool isEventsOpen = false;
 
-    private List<AutoQueryConvention> noteFilters = new List<AutoQueryConvention>()
-    {
-        new()
-        {
-            Name = nameof(Note.Id),
-            Value = "2"
-        }
-    };
+    private List<int> noteIds = [];
 
-    protected void OnNotesClicked(MouseEventArgs args)
+    protected void OnNotesClicked(Unit unit)
     {
         isNotesOpen = true;
+        noteIds = unit.NotesLink.Select(x => x.NoteId).ToList();
         StateHasChanged();
     }
 
@@ -38,5 +34,10 @@ public partial class Units
     {
         isSchoolsOpen = true;
         StateHasChanged();
+    }
+
+    void Configure(QueryBase query)
+    {
+        query.AddQueryParam(nameof(QueryNotes.Ids), JsonConvert.SerializeObject(noteIds));
     }
 }

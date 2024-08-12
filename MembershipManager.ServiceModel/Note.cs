@@ -1,5 +1,6 @@
 ﻿using ServiceStack;
 using ServiceStack.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace MembershipManager.ServiceModel;
 
@@ -28,7 +29,10 @@ public class Note : AuditBase
 
 [ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditQuery)]
-public class QueryNotes : QueryDb<Note> { }
+public class QueryNotes : QueryDb<Note> 
+{
+    public List<int> Ids { get; set; }
+}
 
 [ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditCreate)]
