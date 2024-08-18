@@ -1,0 +1,65 @@
+﻿@using Newtonsoft.Json
+
+@typeparam TModel where TModel : new()
+@typeparam TRelationshipModel where TRelationshipModel : new()
+@typeparam TCreateModel where TCreateModel : IReturn<IdResponse>
+@typeparam TCreateRelationshipModel where TCreateRelationshipModel : IReturn<IdResponse>
+@typeparam TUpdateModel
+@typeparam TDeleteModel
+@typeparam TQueryModel
+
+<MMSlideover @bind-IsOpen="IsOpen" Title="@Title">
+    <div style="margin: 20px;">
+        <AutoQueryGrid Model="Note" Apis="Apis.AutoQuery<TQueryModel, TCreateModel, TUpdateModel, TDeleteModel>()" ConfigureQuery="async (query) => await ConfigureQuery(query)">
+            <Columns>
+                @Columns
+                @* <Column Field="(Note x) => x.Description" /> *@
+            </Columns>
+            <CreateForm>
+                <form>
+                    <AutoFormFields Type="typeof(TModel)" Api="EditModelApi" ModelDictionary="ModelDictionary" />
+                    @* <AutoFormFields Type="typeof(TRelationshipModel)" Api="EditReplationshipModelApi" ModelDictionary="RelationshipModelDictionary" /> *@
+                    <button type="submit">Create</button>
+                </form>
+            </CreateForm>
+        </AutoQueryGrid>
+    </div>
+</MMSlideover>
+
+@code {
+    [Inject] public JsonApiClient? Client { get; set; }
+
+    [Parameter] public EventCallback<bool> IsOpenChanged { get; set; }
+    [Parameter] public bool IsOpen { get; set; }
+    [Parameter] public string Title { get; set; } = string.Empty;
+    [Parameter] public RenderFragment Columns { get; set; } = default!;
+    [Parameter] public EventCallback<QueryBase> ConfigureQueryCallback { get; set; }
+
+    IHasErrorStatus? EditModelApi { get; set; }
+    IHasErrorStatus? EditReplationshipModelApi { get; set; }
+    Dictionary<string, object> ModelDictionary { get; set; } = [];
+    Dictionary<string, object> RelationshipModelDictionary { get; set; } = [];
+
+    private async Task ConfigureQuery(QueryBase query)
+    {
+        if (query != null)
+            await ConfigureQueryCallback.InvokeAsync(query);
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        ModelDictionary = new TModel().ToModelDictionary();
+        RelationshipModelDictionary = new TRelationshipModel().ToModelDictionary();
+
+        return base.OnInitializedAsync();
+    }
+
+    async Task submit()
+    {
+        var noteRequest = ModelDictionary.FromModelDictionary<TCreateModel>();
+        EditModelApi = await Client!.ApiAsync(noteRequest);
+
+        var eventNoteRequest = RelationshipModelDictionary.FromModelDictionary<TCreateRelationshipModel>();
+        EditReplationshipModelApi = await Client!.ApiAsync(eventNoteRequest);
+    }
+}
