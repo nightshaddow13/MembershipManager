@@ -54,42 +54,22 @@
     </Columns>
 </AutoQueryGrid>
 
-<ManyToManySlideover
-    Title="Unit Notes"
-    @bind-IsOpen="isNotesOpen"
-    ConfigureQueryCallback="ConfigureNotesQuery"
-    TModel="Note"
-    TRelationshipModel="UnitNote"
-    TCreateModel="CreateNote"
-    TCreateRelationshipModel="CreateUnitNote"
-    TUpdateModel="UpdateNote"
-    TDeleteModel="DeleteNote"
-    TQueryModel="QueryNotes">
+<ManyToManySlideout Title="Unit Notes"
+                @bind-IsOpen="isNotesOpen"
+                OriginalLinkingId="_unit.Id"
+                ConfigureQueryCallback="ConfigureNotesQuery"
+                CreateRelationshipModelRequestCallback="CreateUnitNote"
+                TModel="Note"
+                TRelationshipModel="UnitNote"
+                TCreateModel="CreateNote"
+                TCreateRelationshipModel="CreateUnitNote"
+                TUpdateModel="UpdateNote"
+                TDeleteModel="DeleteNote"
+                TQueryModel="QueryNotes">
     <Columns>
         <Column Field="(Note x) => x.Description" />
     </Columns>
-</ManyToManySlideover>
-
-@* <ManyToManySlideover TModel="typeof(Note)" TRelationshipModel="typeof(UnitNote)" TCreateModel="typeof(CreateNote)" TCreateRelationshipModel="typeof(CreateUnitNote)" TQueryModel="typeof(QueryUnits)" TUpdateModel="typeof(UpdateNote)" TDeleteModel="typeof(DeleteNote)" 
-    @bind-IsOpen="@isNotesOpen"
-    Title="Unit Notes"
-    ConfigureQueryCallback="ConfigureNotesQuery" /> *@
-@* <MMSlideover @bind-IsOpen="isNotesOpen" Title="Unit Notes">
-    <div style="margin: 20px;">
-        <AutoQueryGrid Model="Note" Apis="Apis.AutoQuery<QueryNotes, CreateNote, UpdateNote, DeleteNote>()" ConfigureQuery="ConfigureNotesQuery" >
-            <Columns>
-                <Column Field="(Note x) => x.Description" />
-            </Columns>
-            <CreateForm>
-                <form>
-                    <AutoFormFields Type="typeof(Note)" Api="EditNoteApi" ModelDictionary="(new Note()).ToModelDictionary()" />
-                    <AutoFormFields Type="typeof(UnitNote)" Api="EditUnitNoteApi" ModelDictionary="(new UnitNote()).ToModelDictionary()" />
-                    <button type="submit">Create</button>
-                </form>
-            </CreateForm>
-        </AutoQueryGrid>
-    </div>
-</MMSlideover> *@
+</ManyToManySlideout>
 
 <MMSlideover @bind-IsOpen="isEventsOpen" Title="Unit Events">
     <p>

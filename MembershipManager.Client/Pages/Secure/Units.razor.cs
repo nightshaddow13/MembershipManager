@@ -1,11 +1,7 @@
 ﻿using MembershipManager.ServiceModel;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Newtonsoft.Json;
 using ServiceStack;
-using ServiceStack.Blazor;
-using ServiceStack.Blazor.Components;
-using System.Text.Json.Serialization;
 
 namespace MembershipManager.Client.Pages.Secure;
 
@@ -16,6 +12,7 @@ public partial class Units
     private bool isEventsOpen = false;
 
     private List<int> noteIds = [];
+    private Unit _unit = new();
 
     void ConfigureNotesQuery(QueryBase query)
     {
@@ -24,10 +21,17 @@ public partial class Units
 
     protected void OnNotesClicked(Unit unit)
     {
-        isNotesOpen = true;
+        _unit = unit;
         noteIds = unit.NotesLink.Select(x => x.NoteId).ToList();
+        isNotesOpen = true;
         StateHasChanged();
     }
+
+    protected CreateUnitNote CreateUnitNote(int unitId, int noteId) => new()
+    {
+        UnitId = unitId,
+        NoteId = noteId
+    };
 
     protected void OnEventsClicked(MouseEventArgs args)
     {
