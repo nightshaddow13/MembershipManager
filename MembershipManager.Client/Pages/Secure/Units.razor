@@ -4,7 +4,7 @@
 
 <h3>Units</h3>
 
-<AutoQueryGrid Model="Unit" Apis="Apis.AutoQuery<QueryUnits, CreateUnit, UpdateUnit, DeleteUnit>()">
+<AutoQueryGrid Model="Unit" Apis="Apis.AutoQuery<QueryUnits, CreateUnit, UpdateUnit, DeleteUnit>()" @ref="_unitGrid">
     <Columns>
         <Column Field="(Unit x) => x.DistrictId">
             <Header>District</Header>
@@ -59,6 +59,7 @@
                 OriginalLinkingId="_unit.Id"
                 ConfigureQueryCallback="ConfigureNotesQuery"
                 CreateRelationshipModelRequestCallback="CreateUnitNote"
+                OnSubmitSuccess="ReloadGrid"
                 TModel="Note"
                 TRelationshipModel="UnitNote"
                 TCreateModel="CreateNote"

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Web;
 using Newtonsoft.Json;
 using ServiceStack;
+using ServiceStack.Blazor.Components.Tailwind;
 
 namespace MembershipManager.Client.Pages.Secure;
 
@@ -13,6 +14,8 @@ public partial class Units
 
     private List<int> noteIds = [];
     private Unit _unit = new();
+
+    private AutoQueryGrid<Unit> _unitGrid = default!;
 
     void ConfigureNotesQuery(QueryBase query)
     {
@@ -32,6 +35,11 @@ public partial class Units
         UnitId = unitId,
         NoteId = noteId
     };
+
+    protected async Task ReloadGrid()
+    {
+        await _unitGrid.RefreshAsync();
+    }
 
     protected void OnEventsClicked(MouseEventArgs args)
     {

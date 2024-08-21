@@ -30,8 +30,10 @@
 
 @code {
     [Inject] public JsonApiClient? Client { get; set; }
+    [Inject] public NavigationManager? NavigationManager { get; set; }
 
     [Parameter] public EventCallback<bool> IsOpenChanged { get; set; }
+    [Parameter] public EventCallback OnSubmitSuccess { get; set; }
     [Parameter] public bool IsOpen { get; set; }
     [Parameter] public string Title { get; set; } = string.Empty;
     [Parameter] public RenderFragment Columns { get; set; } = default!;
@@ -63,18 +65,20 @@
         var noteRequest = ModelDictionary.FromModelDictionary<TCreateModel>();
         EditModelApi = await Client!.ApiAsync(noteRequest);
 
-        if (EditModelApi.Failed)
+        // todo: add some better error handling
+        if (EditModelApi.Failed || EditModelApi.Response == null)
             return;
 
-        // todo: add some error handling
-        var eventNoteRequest = CreateRelationshipModelRequestCallback(OriginalLinkingId, int.Parse(EditModelApi.Response.Id));
+        var eventNoteRequest = CreateRelationshipModelRequestCallback(OriginalLinkingId, int.Parse(EditModelApi.Response!.Id));
         EditReplationshipModelApi = await Client!.ApiAsync(eventNoteRequest);
 
         if (EditReplationshipModelApi.Failed)
             return;
 
         await IsOpenChanged.InvokeAsync(false);
-        // todo: reload main page?
+        NavigationManager?.NavigateTo(NavigationManager.Uri.Split("?")[0]);
+
+        await OnSubmitSuccess.InvokeAsync();
     }
 
     public delegate TCreateRelationshipModel CreateRelationshipDelegate(int originalLinkingId, int newModelId);
