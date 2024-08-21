@@ -5,6 +5,7 @@ namespace MembershipManager.ServiceModel;
 
 #region Base definition
 
+[Icon(Svg = Icons.Earth)]
 public class Council : AuditBase
 {
     [AutoIncrement]
@@ -20,16 +21,13 @@ public class Council : AuditBase
 
 #region Interactions
 
-[ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
+[Tag("Units"), Description("Find Councils")]
 [ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditQuery)]
 public class QueryCouncil : QueryDb<Council> { }
 
+[Tag("Units"), Description("Create a new Council")]
 [ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
 [AutoApply(Behavior.AuditCreate)]
 public class CreateCouncil : ICreateDb<Council>, IReturn<IdResponse>
 {
@@ -37,9 +35,8 @@ public class CreateCouncil : ICreateDb<Council>, IReturn<IdResponse>
     public string Description { get; set; } = string.Empty;
 }
 
+[Tag("Units"), Description("Update a Council")]
 [ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
 [AutoApply(Behavior.AuditModify)]
 public class UpdateCouncil : IPatchDb<Council>, IReturn<IdResponse>
 {
@@ -49,9 +46,8 @@ public class UpdateCouncil : IPatchDb<Council>, IReturn<IdResponse>
     public string Description { get; set; } = string.Empty;
 }
 
+[Tag("Units"), Description("Delete a Council")]
 [ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
 [AutoApply(Behavior.AuditSoftDelete)]
 public class DeleteCouncil : IDeleteDb<Council>, IReturnVoid
 {

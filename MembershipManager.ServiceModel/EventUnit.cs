@@ -5,16 +5,19 @@ namespace MembershipManager.ServiceModel;
 
 #region Base definition
 
+[Icon(Svg = Icons.Unit)]
 [UniqueConstraint(nameof(EventId), nameof(UnitId))]
 public class EventUnit : AuditBase
 {
     [AutoIncrement]
     public int Id { get; set; }
 
-    [ForeignKey(typeof(Event))]
+    [Ref(Model = nameof(Event), RefId = nameof(Event.Id), RefLabel = nameof(Event.Description))]
+    [References(typeof(Event))]
     public int EventId { get; set; }
 
-    [ForeignKey(typeof(Unit))]
+    [Ref(Model = nameof(Unit), RefId = nameof(Unit.Id), RefLabel = nameof(Unit.Number))]
+    [References(typeof(Unit))]
     public int UnitId { get; set; }
 }
 
@@ -22,16 +25,12 @@ public class EventUnit : AuditBase
 
 #region Interactions
 
-[ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
+[Tag("Events"), Description("Find Event & Unit links")]
 [ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditQuery)]
 public class QueryEventUnit : QueryDb<EventUnit> { }
 
-[ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
+[Tag("Events"), Description("Link an Event to a Unit")]
 [ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditCreate)]
 public class CreateEventUnit : ICreateDb<EventUnit>, IReturn<IdResponse>
@@ -40,20 +39,8 @@ public class CreateEventUnit : ICreateDb<EventUnit>, IReturn<IdResponse>
     public int UnitId { get; set; }
 }
 
-[ValidateHasRole(Roles.Committee)]
+[Tag("Events"), Description("Delete a link of an Event to a Unit")]
 [ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
-[ValidateHasRole(Roles.Committee)]
-[AutoApply(Behavior.AuditModify)]
-public class UpdateEventUnit : IPatchDb<EventUnit>, IReturn<IdResponse>
-{
-    public int EventId { get; set; }
-    public int UnitId { get; set; }
-}
-
-[ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
 [AutoApply(Behavior.AuditSoftDelete)]
 public class DeleteEventUnit : IDeleteDb<EventUnit>, IReturnVoid
 {

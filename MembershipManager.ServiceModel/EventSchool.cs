@@ -5,6 +5,7 @@ namespace MembershipManager.ServiceModel;
 
 #region Base definition
 
+[Icon(Svg = Icons.School)]
 [UniqueConstraint(nameof(EventId), nameof(SchoolId))]
 public class EventSchool : AuditBase
 {

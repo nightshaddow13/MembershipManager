@@ -5,33 +5,38 @@ namespace MembershipManager.ServiceModel;
 
 #region Base definition
 
+[Icon(Svg = Icons.School)]
 [UniqueConstraint(nameof(UnitId), nameof(SchoolId))]
 public class UnitSchool : AuditBase
 {
     [AutoIncrement]
     public int Id { get; set; }
 
-    [ForeignKey(typeof(Unit))]
+    [Ref(Model = nameof(Unit), RefId = nameof(Unit.Id), RefLabel = nameof(Unit.Number))]
+    [References(typeof(Unit))]
     public int UnitId { get; set; }
 
-    [ForeignKey(typeof(School))]
+    [Reference]
+    public Unit Unit { get; set; } = default!;
+
+    [Ref(Model = nameof(School), RefId = nameof(School.Id), RefLabel = nameof(School.Description))]
+    [References(typeof(School))]
     public int SchoolId { get; set; }
+
+    [Reference]
+    public School School { get; set; } = default!;
 }
 
 #endregion
 
 #region Interactions
 
-[ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
+[Tag("Units"), Description("Find School & Unit links")]
 [ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditQuery)]
 public class QueryUnitSchool : QueryDb<UnitSchool> { }
 
-[ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
+[Tag("Units"), Description("Link a School to a Unit")]
 [ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditCreate)]
 public class CreateUnitSchool : ICreateDb<UnitSchool>, IReturn<IdResponse>
@@ -40,20 +45,8 @@ public class CreateUnitSchool : ICreateDb<UnitSchool>, IReturn<IdResponse>
     public int SchoolId { get; set; }
 }
 
-[ValidateHasRole(Roles.Committee)]
+[Tag("Units"), Description("Delete a link of a School to a Unit")]
 [ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
-[ValidateHasRole(Roles.Committee)]
-[AutoApply(Behavior.AuditModify)]
-public class UpdateUnitSchool : IPatchDb<UnitSchool>, IReturn<IdResponse>
-{
-    public int UnitId { get; set; }
-    public int SchoolId { get; set; }
-}
-
-[ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
 [AutoApply(Behavior.AuditSoftDelete)]
 public class DeleteUnitSchool : IDeleteDb<UnitSchool>, IReturnVoid
 {

@@ -5,6 +5,7 @@ namespace MembershipManager.ServiceModel;
 
 #region Base definition
 
+[Icon(Svg = Icons.Earth)]
 public class District : AuditBase
 {
     [AutoIncrement]
@@ -12,7 +13,8 @@ public class District : AuditBase
 
     public string Description { get; set; } = string.Empty;
 
-    [ForeignKey(typeof(Council))]
+    [Ref(Model = nameof(Council), RefId = nameof(Council.Id), RefLabel = nameof(Council.Description))]
+    [References(typeof(Council))]
     public int CouncilId { get; set; }
 
     [Reference]
@@ -23,16 +25,13 @@ public class District : AuditBase
 
 #region Interactions
 
-[ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
+[Tag("Units"), Description("Find Districts")]
 [ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditQuery)]
 public class QueryDistrict : QueryDb<District> { }
 
+[Tag("Units"), Description("Create a new District")]
 [ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
 [AutoApply(Behavior.AuditCreate)]
 public class CreateDistrict : ICreateDb<District>, IReturn<IdResponse>
 {
@@ -42,9 +41,8 @@ public class CreateDistrict : ICreateDb<District>, IReturn<IdResponse>
     public int CouncilId { get; set; }
 }
 
+[Tag("Units"), Description("Update a District")]
 [ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
 [AutoApply(Behavior.AuditModify)]
 public class UpdateDistrict : IPatchDb<District>, IReturn<IdResponse>
 {
@@ -56,9 +54,8 @@ public class UpdateDistrict : IPatchDb<District>, IReturn<IdResponse>
     public int CouncilId { get; set; }
 }
 
+[Tag("Units"), Description("Delete a District")]
 [ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
 [AutoApply(Behavior.AuditSoftDelete)]
 public class DeleteDistrict : IDeleteDb<District>, IReturnVoid
 {

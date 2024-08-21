@@ -1,0 +1,21 @@
+@if (IsOpen)
+{
+    <SlideOver Title="@Title" ShowFooter="false" Done="OnClose">
+        @ChildContent
+    </SlideOver>
+}
+
+@code{
+    [Parameter] public EventCallback<bool> IsOpenChanged { get; set; }
+    [Parameter] public bool IsOpen { get; set; }
+
+    [Parameter] public RenderFragment ChildContent { get; set; } = default!;
+
+    [Parameter] public string Title { get; set; } = string.Empty;
+
+    private void OnClose()
+    {
+        IsOpen = false;
+        IsOpenChanged.InvokeAsync(false);
+    }
+}

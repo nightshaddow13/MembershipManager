@@ -1,5 +1,6 @@
 ﻿using ServiceStack;
 using ServiceStack.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace MembershipManager.ServiceModel;
 
@@ -26,25 +27,21 @@ public class Note : AuditBase
 
 #region Interactions
 
-[ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
 [ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditQuery)]
-public class QueryNote : QueryDb<Note> { }
+public class QueryNotes : QueryDb<Note> 
+{
+    public List<int> Ids { get; set; }
+}
 
-[ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
+[ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditCreate)]
 public class CreateNote : ICreateDb<Note>, IReturn<IdResponse>
 {
     public string Description { get; set; } = string.Empty;
 }
 
-[ValidateHasRole(Roles.Admin)]
-[ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
+[ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditModify)]
 public class UpdateNote : IPatchDb<Note>, IReturn<IdResponse>
 {
@@ -54,9 +51,7 @@ public class UpdateNote : IPatchDb<Note>, IReturn<IdResponse>
     public string Description { get; set; } = string.Empty;
 }
 
-[ValidateHasRole(Roles.Admin)]
 [ValidateHasRole(Roles.MembershipChair)]
-[ValidateHasRole(Roles.CouncilExecutive)]
 [AutoApply(Behavior.AuditSoftDelete)]
 public class DeleteNote : IDeleteDb<Note>, IReturnVoid
 {
