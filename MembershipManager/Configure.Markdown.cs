@@ -46,8 +46,8 @@ public class ConfigureMarkdown : IHostingStartup
 public class AppConfig
 {
     public static AppConfig Instance { get; } = new();
-    public string LocalBaseUrl { get; set; }
-    public string PublicBaseUrl { get; set; }
+    public string LocalBaseUrl { get; set; } = string.Empty;
+    public string PublicBaseUrl { get; set; } = string.Empty;
     public string? GitPagesBaseUrl { get; set; }
 }
 
