@@ -16,6 +16,9 @@ public class EventUnit : AuditBase
     [References(typeof(Event))]
     public int EventId { get; set; }
 
+    [Reference]
+    public Event Event { get; set; } = default!;
+
     [Ref(Model = nameof(Unit), RefId = nameof(Unit.Id), RefLabel = nameof(Unit.Number))]
     [References(typeof(Unit))]
     public int UnitId { get; set; }
@@ -28,7 +31,10 @@ public class EventUnit : AuditBase
 [Tag("Events"), Description("Find Event & Unit links")]
 [ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditQuery)]
-public class QueryEventUnit : QueryDb<EventUnit> { }
+public class QueryEventUnits : QueryDb<EventUnit> 
+{
+    public List<int>? Ids { get; set; }
+}
 
 [Tag("Events"), Description("Link an Event to a Unit")]
 [ValidateHasRole(Roles.Committee)]

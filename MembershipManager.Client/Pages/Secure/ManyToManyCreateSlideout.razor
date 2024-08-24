@@ -1,0 +1,26 @@
+﻿@typeparam TModel where TModel : new()
+@typeparam TRelationshipModel where TRelationshipModel : new()
+@typeparam TCreateModel where TCreateModel : IReturn<IdResponse>
+@typeparam TCreateRelationshipModel where TCreateRelationshipModel : IReturn<IdResponse>
+@typeparam TUpdateModel
+@typeparam TDeleteModel
+@typeparam TQueryModel
+
+@if (IsOpen)
+{
+    <MMSlideover @bind-IsOpen="IsOpen" Title="@Title">
+        <div style="margin: 20px;">
+            <AutoQueryGrid Model="Note" Apis="Apis.AutoQuery<TQueryModel, TCreateModel, TUpdateModel, TDeleteModel>()" ConfigureQuery="ConfigureQuery">
+                <Columns>
+                    @Columns
+                </Columns>
+                <CreateForm>
+                    <EditForm Model="new object()" OnValidSubmit="submit">
+                        <AutoFormFields Type="typeof(TModel)" Api="EditModelApi" ModelDictionary="ModelDictionary" />
+                        <button type="submit">Create</button>
+                    </EditForm>
+                </CreateForm>
+            </AutoQueryGrid>
+        </div>
+    </MMSlideover>
+}

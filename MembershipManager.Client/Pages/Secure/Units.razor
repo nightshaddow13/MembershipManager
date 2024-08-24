@@ -29,7 +29,7 @@
         </Column>
         <Column Field="(Unit x) => x.EventsLink" VisibleFrom="Breakpoint.ExtraLarge">
             <Template>
-                <TextLink onclick="OnEventsClicked" href="/secure/units">
+                <TextLink onclick="() => OnEventsClicked(context)" href="/secure/units">
                     <div style="display: inline-flex; align-items: center;">
                         <Icon Image="typeof(EventUnit).GetIcon()" />
                         <div style="margin-left: 5px;">
@@ -54,29 +54,36 @@
     </Columns>
 </AutoQueryGrid>
 
-<ManyToManySlideout Title="Unit Notes"
-                @bind-IsOpen="isNotesOpen"
-                OriginalLinkingId="_unit.Id"
-                ConfigureQueryCallback="ConfigureNotesQuery"
-                CreateRelationshipModelRequestCallback="CreateUnitNote"
-                OnSubmitSuccess="ReloadGrid"
-                TModel="Note"
-                TRelationshipModel="UnitNote"
-                TCreateModel="CreateNote"
-                TCreateRelationshipModel="CreateUnitNote"
-                TUpdateModel="UpdateNote"
-                TDeleteModel="DeleteNote"
-                TQueryModel="QueryNotes">
+<ManyToManyCreateSlideout Title="Unit Notes"
+                          @bind-IsOpen="isNotesOpen"
+                          OriginalLinkingId="_unit.Id"
+                          ConfigureQueryCallback="ConfigureNotesQuery"
+                          CreateRelationshipModelRequestCallback="CreateUnitNote"
+                          OnSubmitSuccess="ReloadGrid"
+                          TModel="Note"
+                          TRelationshipModel="UnitNote"
+                          TCreateModel="CreateNote"
+                          TCreateRelationshipModel="CreateUnitNote"
+                          TUpdateModel="UpdateNote"
+                          TDeleteModel="DeleteNote"
+                          TQueryModel="QueryNotes">
     <Columns>
         <Column Field="(Note x) => x.Description" />
     </Columns>
-</ManyToManySlideout>
+</ManyToManyCreateSlideout>
 
-<MMSlideover @bind-IsOpen="isEventsOpen" Title="Unit Events">
-    <p>
-        Todo: UI with a list of events for the unit and the option to create a new event
-    </p>
-</MMSlideover>
+<ManyToManyReadOnlySlideout Title="Unit Events"
+                        @bind-IsOpen="isEventsOpen"
+                        ConfigureQueryCallback="ConfigureEventsQuery"
+                        OnSubmitSuccess="ReloadGrid"
+                        TModel="EventUnit"
+                        TDeleteModel="DeleteEventUnit"
+                        TQueryModel="QueryEventUnits">
+    <Columns>
+        <Column Field="(EventUnit x) => x.Event.EventType" />
+        <Column Field="(EventUnit x) => x.Event.Description" />
+    </Columns>
+</ManyToManyReadOnlySlideout>
 
 <MMSlideover @bind-IsOpen="isSchoolsOpen" Title="Unit Schools">
     <p>

@@ -1,34 +1,18 @@
-﻿@using Newtonsoft.Json
+﻿using Microsoft.AspNetCore.Components;
+using ServiceStack;
+using ServiceStack.Blazor;
 
-@typeparam TModel where TModel : new()
-@typeparam TRelationshipModel where TRelationshipModel : new()
-@typeparam TCreateModel where TCreateModel : IReturn<IdResponse>
-@typeparam TCreateRelationshipModel where TCreateRelationshipModel : IReturn<IdResponse>
-@typeparam TUpdateModel
-@typeparam TDeleteModel
-@typeparam TQueryModel
+namespace MembershipManager.Client.Pages.Secure;
 
-@if (IsOpen)
+public partial class ManyToManyCreateSlideout<
+    TModel, 
+    TRelationshipModel, 
+    TCreateModel, 
+    TCreateRelationshipModel, 
+    TUpdateModel, 
+    TDeleteModel, 
+    TQueryModel>
 {
-    <MMSlideover @bind-IsOpen="IsOpen" Title="@Title">
-    <div style="margin: 20px;">
-            <AutoQueryGrid Model="Note" Apis="Apis.AutoQuery<TQueryModel, TCreateModel, TUpdateModel, TDeleteModel>()" ConfigureQuery="ConfigureQuery">
-            <Columns>
-                @Columns
-            </Columns>
-            <CreateForm>
-                <EditForm Model="new object()" OnValidSubmit="submit">
-                    <AutoFormFields Type="typeof(TModel)" Api="EditModelApi" ModelDictionary="ModelDictionary" />
-                    @* <AutoFormFields Type="typeof(TRelationshipModel)" Api="EditReplationshipModelApi" ModelDictionary="RelationshipModelDictionary" /> *@
-                    <button type="submit">Create</button>
-                </EditForm>
-            </CreateForm>
-        </AutoQueryGrid>
-    </div>
-    </MMSlideover>
-}
-
-@code {
     [Inject] public JsonApiClient? Client { get; set; }
     [Inject] public NavigationManager? NavigationManager { get; set; }
 
