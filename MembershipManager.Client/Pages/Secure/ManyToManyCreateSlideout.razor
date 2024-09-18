@@ -8,7 +8,7 @@
 
 @if (IsOpen)
 {
-    <MMSlideover @bind-IsOpen="IsOpen" Title="@Title">
+    <MMSlideover IsOpen="IsOpen" OnClose="OnClose" Title="@Title">
         <div style="margin: 20px;">
             <AutoQueryGrid Model="Note" Apis="Apis.AutoQuery<TQueryModel, TCreateModel, TUpdateModel, TDeleteModel>()" ConfigureQuery="ConfigureQuery">
                 <Columns>

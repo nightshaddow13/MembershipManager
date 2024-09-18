@@ -1,0 +1,25 @@
+﻿@inherits UnitSchoolSlideoutBase
+
+@if(IsOpen)
+{
+    <SlideOver Title="@Title" ShowFooter="false" Done="Close">
+        <div class="mt-6">
+            <SchoolMultiSelect @bind-SelectedSchools="SelectedSchools" @bind-SelectedPairs="SelectedPairs" />
+        </div>
+        <div class="mt-4">
+            <AutoQueryGrid Model="UnitSchool" 
+                            Apis="Apis.AutoQuery<QueryUnitSchools>()">
+                        <Columns>
+                            <Column Field="(UnitSchool us) => us.Id"  />
+                            <Column Field="(UnitSchool us) => us.SchoolId" />
+                            <Column Field="(UnitSchool us) => us.School.Description" />
+                        </Columns>
+            </AutoQueryGrid>
+        </div>
+        <div class="mt-6">
+            <button @onclick="SaveChanges" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
+                Save Changes
+            </button>
+        </div>
+    </SlideOver>
+}

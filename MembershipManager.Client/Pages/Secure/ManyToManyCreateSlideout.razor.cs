@@ -19,6 +19,7 @@ public partial class ManyToManyCreateSlideout<
     [Parameter] public EventCallback<bool> IsOpenChanged { get; set; }
     [Parameter] public EventCallback OnSubmitSuccess { get; set; }
     [Parameter] public bool IsOpen { get; set; }
+    [Parameter] public EventCallback OnClose { get; set; }
     [Parameter] public string Title { get; set; } = string.Empty;
     [Parameter] public RenderFragment Columns { get; set; } = default!;
     [Parameter] public int OriginalLinkingId { get; set; }
@@ -60,7 +61,10 @@ public partial class ManyToManyCreateSlideout<
         if (EditReplationshipModelApi.Failed)
             return;
 
-        await IsOpenChanged.InvokeAsync(false);
+        if (OnClose.HasDelegate)
+        {
+            await OnClose.InvokeAsync();
+        }
         NavigationManager?.NavigateTo(NavigationManager.Uri.Split("?")[0]);
 
         await OnSubmitSuccess.InvokeAsync();

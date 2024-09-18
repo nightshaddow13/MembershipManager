@@ -39,9 +39,9 @@
                 </TextLink>
             </Template>
         </Column>
-        <Column Field="(Unit x) => x.SchoolsLink" VisibleFrom="Breakpoint.ExtraLarge2x">
+        <Column Field="(Unit x) => x.SchoolsLink" VisibleFrom="Breakpoint.ExtraLarge">
             <Template>
-                <TextLink onclick="OnSchoolsClicked" href="/secure/units">
+                <TextLink onclick="() => OnSchoolsClicked(context)" href="/secure/units">
                     <div style="display: inline-flex; align-items: center;">
                         <Icon Image="typeof(UnitSchool).GetIcon()" />
                         <div style="margin-left: 5px;">
@@ -55,7 +55,8 @@
 </AutoQueryGrid>
 
 <ManyToManyCreateSlideout Title="Unit Notes"
-                          @bind-IsOpen="isNotesOpen"
+                          IsOpen="IsNotesOpen"
+                          OnClose="CloseNotes"
                           OriginalLinkingId="_unit.Id"
                           ConfigureQueryCallback="ConfigureNotesQuery"
                           CreateRelationshipModelRequestCallback="CreateUnitNote"
@@ -73,7 +74,8 @@
 </ManyToManyCreateSlideout>
 
 <ManyToManyReadOnlySlideout Title="Unit Events"
-                        @bind-IsOpen="isEventsOpen"
+                        IsOpen="IsEventsOpen"
+                        OnClose="CloseEvents"
                         ConfigureQueryCallback="ConfigureEventsQuery"
                         OnSubmitSuccess="ReloadGrid"
                         TModel="EventUnit"
@@ -85,8 +87,11 @@
     </Columns>
 </ManyToManyReadOnlySlideout>
 
-<MMSlideover @bind-IsOpen="isSchoolsOpen" Title="Unit Schools">
-    <p>
-        Todo: UI with a list of schools for the unit and the option to create a new school
-    </p>
-</MMSlideover>
+@if (IsSchoolsOpen)
+{
+    <UnitSchoolSlideOut Title="Unit Schools"
+                            IsOpen="IsSchoolsOpen"
+                            OnClose="CloseSchools"
+                            UnitId="_unit.Id">
+</UnitSchoolSlideOut>
+}

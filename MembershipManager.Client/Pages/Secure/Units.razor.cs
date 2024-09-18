@@ -8,12 +8,13 @@ namespace MembershipManager.Client.Pages.Secure;
 
 public partial class Units
 {
-    private bool isNotesOpen = false;
-    private bool isSchoolsOpen = false;
-    private bool isEventsOpen = false;
+    private bool IsNotesOpen { get; set; } = false;
+    private bool IsSchoolsOpen { get; set; } = false;
+    private bool IsEventsOpen { get; set; } = false;
 
     private List<int> _noteIds = [];
     private List<int> _eventIds = [];
+    private List<int> _schoolIds = [];
     private Unit _unit = new();
 
     private AutoQueryGrid<Unit> _unitGrid = default!;
@@ -29,8 +30,13 @@ public partial class Units
     {
         _unit = unit;
         _noteIds = unit.NotesLink.Select(x => x.NoteId).ToList();
-        isNotesOpen = true;
+        IsNotesOpen = true;
         StateHasChanged();
+    }
+
+    protected void CloseNotes()
+    {
+        IsNotesOpen = false;
     }
 
     protected CreateUnitNote CreateUnitNote(int unitId, int noteId) => new()
@@ -57,15 +63,33 @@ public partial class Units
     {
         _unit = unit;
         _eventIds = unit.EventsLink.Select(x => x.EventId).ToList();
-        isEventsOpen = true;
+        IsEventsOpen = true;
         StateHasChanged();
+    }
+
+    protected void CloseEvents()
+    {
+        IsEventsOpen = false;
     }
 
     #endregion Events
 
-    protected void OnSchoolsClicked(MouseEventArgs args)
+    protected void OnSchoolsClicked(Unit unit)
     {
-        isSchoolsOpen = true;
+        _unit = unit;
+        _schoolIds = unit.SchoolsLink.Select(x => x.SchoolId).ToList();
+        IsSchoolsOpen = true;
         StateHasChanged();
+    }
+
+    protected async void CloseSchools()
+    {
+        IsSchoolsOpen = false;
+        await ReloadGrid();
+    }
+
+    void ConfigureSchoolsQuery(QueryBase query)
+    {
+        query.AddQueryParam(nameof(QueryUnitSchool.Ids), JsonConvert.SerializeObject(_schoolIds));
     }
 }
