@@ -9,8 +9,8 @@ public class UserManagerHelper
     {
         var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
         var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-        var adminEmail = configuration["AdminUser:Email"];
-        var adminPassword = configuration["AdminUser:Password"];
+        var adminEmail = configuration["AdminUser:Email"] ?? string.Empty;
+        var adminPassword = configuration["AdminUser:Password"] ?? "superSecretPassword";
 
         // Check if the admin role exists
         if (!await roleManager.RoleExistsAsync("Admin"))

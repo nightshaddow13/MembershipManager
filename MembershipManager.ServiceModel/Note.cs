@@ -31,7 +31,7 @@ public class Note : AuditBase
 [AutoApply(Behavior.AuditQuery)]
 public class QueryNotes : QueryDb<Note> 
 {
-    public List<int> Ids { get; set; }
+    public List<int>? Ids { get; set; }
 }
 
 [ValidateHasRole(Roles.Committee)]

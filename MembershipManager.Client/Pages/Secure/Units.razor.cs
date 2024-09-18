@@ -8,26 +8,35 @@ namespace MembershipManager.Client.Pages.Secure;
 
 public partial class Units
 {
-    private bool isNotesOpen = false;
-    private bool isSchoolsOpen = false;
-    private bool isEventsOpen = false;
+    private bool IsNotesOpen { get; set; } = false;
+    private bool IsSchoolsOpen { get; set; } = false;
+    private bool IsEventsOpen { get; set; } = false;
 
-    private List<int> noteIds = [];
+    private List<int> _noteIds = [];
+    private List<int> _eventIds = [];
+    private List<int> _schoolIds = [];
     private Unit _unit = new();
 
     private AutoQueryGrid<Unit> _unitGrid = default!;
 
+    #region Notes
+
     void ConfigureNotesQuery(QueryBase query)
     {
-        query.AddQueryParam(nameof(QueryNotes.Ids), JsonConvert.SerializeObject(noteIds));
+        query.AddQueryParam(nameof(QueryNotes.Ids), JsonConvert.SerializeObject(_noteIds));
     }
 
     protected void OnNotesClicked(Unit unit)
     {
         _unit = unit;
-        noteIds = unit.NotesLink.Select(x => x.NoteId).ToList();
-        isNotesOpen = true;
+        _noteIds = unit.NotesLink.Select(x => x.NoteId).ToList();
+        IsNotesOpen = true;
         StateHasChanged();
+    }
+
+    protected void CloseNotes()
+    {
+        IsNotesOpen = false;
     }
 
     protected CreateUnitNote CreateUnitNote(int unitId, int noteId) => new()
@@ -36,20 +45,51 @@ public partial class Units
         NoteId = noteId
     };
 
+    #endregion Notes
+
     protected async Task ReloadGrid()
     {
         await _unitGrid.RefreshAsync();
     }
 
-    protected void OnEventsClicked(MouseEventArgs args)
+    #region Events
+
+    void ConfigureEventsQuery(QueryBase query)
     {
-        isEventsOpen = true;
+        query.AddQueryParam(nameof(QueryEventUnits.Ids), JsonConvert.SerializeObject(_eventIds));
+    }
+
+    protected void OnEventsClicked(Unit unit)
+    {
+        _unit = unit;
+        _eventIds = unit.EventsLink.Select(x => x.EventId).ToList();
+        IsEventsOpen = true;
         StateHasChanged();
     }
 
-    protected void OnSchoolsClicked(MouseEventArgs args)
+    protected void CloseEvents()
     {
-        isSchoolsOpen = true;
+        IsEventsOpen = false;
+    }
+
+    #endregion Events
+
+    protected void OnSchoolsClicked(Unit unit)
+    {
+        _unit = unit;
+        _schoolIds = unit.SchoolsLink.Select(x => x.SchoolId).ToList();
+        IsSchoolsOpen = true;
         StateHasChanged();
+    }
+
+    protected async void CloseSchools()
+    {
+        IsSchoolsOpen = false;
+        await ReloadGrid();
+    }
+
+    void ConfigureSchoolsQuery(QueryBase query)
+    {
+        query.AddQueryParam(nameof(QueryUnitSchool.Ids), JsonConvert.SerializeObject(_schoolIds));
     }
 }

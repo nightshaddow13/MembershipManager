@@ -7,6 +7,7 @@ namespace MembershipManager.ServiceModel;
 
 [Icon(Svg = Icons.School)]
 [UniqueConstraint(nameof(UnitId), nameof(SchoolId))]
+[AutoApply(Behavior.AuditQuery)]
 public class UnitSchool : AuditBase
 {
     [AutoIncrement]
@@ -34,7 +35,22 @@ public class UnitSchool : AuditBase
 [Tag("Units"), Description("Find School & Unit links")]
 [ValidateHasRole(Roles.Committee)]
 [AutoApply(Behavior.AuditQuery)]
-public class QueryUnitSchool : QueryDb<UnitSchool> { }
+public class QueryUnitSchool : QueryDb<UnitSchool>
+{
+    public List<int>? Ids { get; set; }
+}
+
+[Tag("Units"), Description("Find schools associated with a unit")]
+[AutoApply(Behavior.AuditQuery)]
+public class QueryUnitSchools : QueryDb<UnitSchool>
+{
+    public int? UnitId { get; set; }
+}
+public class QueryUnitSchoolsResponse
+{
+    public List<UnitSchool> Results { get; set; }
+    public long Total { get; set; }
+}
 
 [Tag("Units"), Description("Link a School to a Unit")]
 [ValidateHasRole(Roles.Committee)]
